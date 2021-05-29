@@ -40,7 +40,7 @@ export default function gameStore() {
     }
 
     if (game.cellEditing) {
-      game.cells ^= 1n << BigInt(p);
+      game.cells ^= 1n << BigInt(game.size ** 2 - p - 1);
     } else {
       _flip(p);
     }
