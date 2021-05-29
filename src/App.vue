@@ -1,19 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container>
+      <b-row>
+        <game-cells />
+        <game-settings />
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {defineComponent, provide} from '@vue/composition-api';
+import gameStore from './stores/game';
+import {gameKey} from './stores/keys';
 
-export default {
-  name: 'App',
+import GameCells from './components/GameCells';
+import GameSettings from './components/GameSettings';
+
+export default defineComponent({
   components: {
-    HelloWorld
-  }
-}
+    GameCells,
+    GameSettings,
+  },
+  setup() {
+    provide(gameKey, gameStore());
+  },
+});
 </script>
 
 <style>
