@@ -1,7 +1,7 @@
 <template>
   <b-col md="6" class="mt-5 mt-md-1">
-    <h4>Settings</h4>
-    <b-form-group label-cols="5" label="Difficulty">
+    <h4>{{ i18n("settings") }}</h4>
+    <b-form-group label-cols="5" :label="i18n('difficulty')">
       <b-input-group>
         <template #append>
           <b-button
@@ -9,13 +9,13 @@
             variant="outline-primary"
             @click="initialize(form.difficulty)"
           >
-            New Game
+            {{ i18n("newGame") }}
           </b-button>
         </template>
         <b-form-select v-model="form.difficulty" :options="form.difficulties" />
       </b-input-group>
     </b-form-group>
-    <b-form-group label-cols="5" label="Cheat">
+    <b-form-group label-cols="5" :label="i18n('cheat')">
       <b-form-checkbox
         v-model="game.cheatEnabled"
         :disabled="form.toggleCheatDisabled"
@@ -25,7 +25,7 @@
       />
     </b-form-group>
     <template v-if="game.cheatEnabled">
-      <b-form-group label-cols="5" label="Solution">
+      <b-form-group label-cols="5" :label="i18n('solution')">
         <b-form-checkbox
           v-model="game.showSolution"
           :disabled="form.toggleSolutionDisabled"
@@ -33,19 +33,19 @@
           size="lg"
         />
       </b-form-group>
-      <b-form-group label-cols="5" label="Solution kind">
-        {{ game.solutionKind }}
+      <b-form-group label-cols="5" :label="i18n('solutionKind')">
+        {{ i18n(game.solutionKind) }}
       </b-form-group>
-      <b-form-group label-cols="5" label="Refine solution">
+      <b-form-group label-cols="5" :label="i18n('refineSolution')">
         <b-button
           :disabled="form.refineSolutionDisabled"
           variant="outline-primary"
           @click="updateSolution"
         >
-          Execute
+          {{ i18n("execute") }}
         </b-button>
       </b-form-group>
-      <b-form-group label-cols="5" label="Edit cells">
+      <b-form-group label-cols="5" :label="i18n('editCells')">
         <b-form-checkbox
           v-model="game.cellEditing"
           :disabled="form.toggleEditDisabled"
@@ -54,13 +54,13 @@
           @change="handleEditChange"
         />
       </b-form-group>
-      <b-form-group label-cols="5" label="Auto solve">
+      <b-form-group label-cols="5" :label="i18n('autoSolve')">
         <b-button
           :disabled="form.autoSolveDisabled"
           variant="outline-primary"
           @click="autoSolve"
         >
-          Execute
+          {{ i18n("execute") }}
         </b-button>
       </b-form-group>
     </template>
@@ -75,7 +75,7 @@ import {
   reactive,
 } from '@vue/composition-api';
 import {range} from '../libs/range';
-import {gameKey} from '../stores/keys';
+import {gameKey, i18nKey} from '../stores/keys';
 
 import {
   BButton,
@@ -105,6 +105,8 @@ export default defineComponent({
       autoSolve,
     } = inject(gameKey);
 
+    const i18n = inject(i18nKey).submitScene('settings');
+
     const form = reactive({
       difficulty: game.size,
       difficulties: Array.from(range(3, 21)),
@@ -128,6 +130,7 @@ export default defineComponent({
 
     return {
       form,
+      i18n,
       game,
       initialize,
       updateSolution,
