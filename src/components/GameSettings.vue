@@ -9,14 +9,14 @@
             variant="outline-primary"
             @click="initialize(form.difficulty)"
           >
-            Apply
+            New Game
           </b-button>
         </template>
-        <b-select v-model="form.difficulty" :options="form.difficulties" />
+        <b-form-select v-model="form.difficulty" :options="form.difficulties" />
       </b-input-group>
     </b-form-group>
     <b-form-group label-cols="5" label="Cheat">
-      <b-check
+      <b-form-checkbox
         v-model="game.cheatEnabled"
         :disabled="form.toggleCheatDisabled"
         switch
@@ -26,7 +26,7 @@
     </b-form-group>
     <template v-if="game.cheatEnabled">
       <b-form-group label-cols="5" label="Solution">
-        <b-check
+        <b-form-checkbox
           v-model="game.showSolution"
           :disabled="form.toggleSolutionDisabled"
           switch
@@ -37,16 +37,16 @@
         {{ game.solutionKind }}
       </b-form-group>
       <b-form-group label-cols="5" label="Refine solution">
-        <b-btn
+        <b-button
           :disabled="form.refineSolutionDisabled"
           variant="outline-primary"
           @click="updateSolution"
         >
           Execute
-        </b-btn>
+        </b-button>
       </b-form-group>
       <b-form-group label-cols="5" label="Edit cells">
-        <b-check
+        <b-form-checkbox
           v-model="game.cellEditing"
           :disabled="form.toggleEditDisabled"
           switch
@@ -55,13 +55,13 @@
         />
       </b-form-group>
       <b-form-group label-cols="5" label="Auto solve">
-        <b-btn
+        <b-button
           :disabled="form.autoSolveDisabled"
           variant="outline-primary"
           @click="autoSolve"
         >
           Execute
-        </b-btn>
+        </b-button>
       </b-form-group>
     </template>
   </b-col>
@@ -77,7 +77,24 @@ import {
 import {range} from '../libs/range';
 import {gameKey} from '../stores/keys';
 
+import {
+  BButton,
+  BCol,
+  BFormCheckbox,
+  BFormGroup,
+  BFormSelect,
+  BInputGroup,
+} from 'bootstrap-vue';
+
 export default defineComponent({
+  components: {
+    BButton,
+    BCol,
+    BFormCheckbox,
+    BFormGroup,
+    BFormSelect,
+    BInputGroup,
+  },
   setup() {
     const {
       game,

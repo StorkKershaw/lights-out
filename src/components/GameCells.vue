@@ -30,10 +30,15 @@ import {
   reactive,
 } from '@vue/composition-api';
 import {gameKey} from '../stores/keys';
-
 import {zip} from '../libs/zip';
 
+import {BCol, BImg} from 'bootstrap-vue';
+
 export default defineComponent({
+  components: {
+    BCol,
+    BImg,
+  },
   setup() {
     const {
       game,

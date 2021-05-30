@@ -14,11 +14,14 @@ import {defineComponent, provide} from '@vue/composition-api';
 import gameStore from './stores/game';
 import {gameKey} from './stores/keys';
 
+import {BContainer, BRow} from 'bootstrap-vue';
 import GameCells from './components/GameCells';
 import GameSettings from './components/GameSettings';
 
 export default defineComponent({
   components: {
+    BContainer,
+    BRow,
     GameCells,
     GameSettings,
   },
