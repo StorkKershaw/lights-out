@@ -105,7 +105,7 @@ export default defineComponent({
       autoSolve,
     } = inject(gameKey);
 
-    const i18n = inject(i18nKey).submitScene('settings');
+    const i18n = inject(i18nKey).selectScene('settings');
 
     const form = reactive({
       difficulty: game.size,
