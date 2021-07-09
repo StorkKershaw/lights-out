@@ -1,29 +1,29 @@
 # lights-out
 
+A Lights Out game made with Vue.js.
+
 ## Project setup
 
+### Install Packages
+
 ```bash
-npm install
+npm ci
 ```
 
-### Compiles and hot-reloads for development
+### Development
 
 ```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Production
 
 ```bash
 npm run build
 ```
 
-### Lints and fixes files
+### Lints
 
 ```bash
 npm run lint
 ```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
