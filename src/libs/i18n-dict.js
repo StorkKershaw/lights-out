@@ -1,6 +1,6 @@
 /* eslint-disable require-jsdoc */
 
-const _dict = {
+const dict = {
   'en': {
     'settings': {
       'settings': 'Settings',
@@ -37,18 +37,17 @@ const _dict = {
   },
 };
 
+function isObject(value) {
+  return typeof value === 'object' && value !== null;
+}
+
 function toMap(object) {
-  const toEntries = Object.entries;
-
-  const entries = [];
-  for (let [key, value] of toEntries(object)) {
-    if (value !== null && typeof value === 'object') {
-      value = toMap(value);
-    }
-    entries.push([key, value]);
-  }
-
+  const entries = Object.entries(object)
+      .map(([key, value]) => [
+        key,
+        isObject(value) ? toMap(value) : value,
+      ]);
   return new Map(entries);
 }
 
-export const i18nDict = toMap(_dict);
+export const i18nDict = toMap(dict);
